@@ -1,9 +1,9 @@
 import Layout from '../comps/Layout'
 
-const Index = () => (
+const About = () => (
   <Layout>
     <p>New Version with Next.js</p>
   </Layout>
 )
 
-export default Index
+export default About
