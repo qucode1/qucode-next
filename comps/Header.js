@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import { Component } from 'react'
-import { headerStyles, base } from './HeaderStyles'
+import { headerStyles } from './HeaderStyles'
+import { basics } from './baseStyles'
+import { bg } from './baseStyles'
 
 const linkStyle = {
   marginRight: 15,
@@ -18,10 +20,12 @@ class Header extends Component {
     collapseNavBtn()
   }
   render() {
+    console.log(this.props)
+    const isIndex = this.props.url.pathname === '/index' || this.props.url.pathname === '/'
     return (
       <div>
-        <div className="bg-image1"/>
-        <div className="bg-image2"/>
+        <div className={isIndex ? 'bg-image1' : 'baseBg'}/>
+        <div className={isIndex && 'bg-image2'}/>
         <nav>
           <div className="topNav">
             <img src="/static/logo.png"/>
@@ -68,8 +72,9 @@ class Header extends Component {
           </div>
           <div className="placeholder"></div>
         </nav>
-        <style jsx global>{ base }</style>
+        <style jsx global>{ basics }</style>
         <style jsx>{ headerStyles }</style>
+        <style jsx>{ bg }</style>
       </div>
     )
   }

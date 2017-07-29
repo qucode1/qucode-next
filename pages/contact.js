@@ -1,13 +1,13 @@
 import { Component } from 'react'
 import Layout from '../comps/Layout'
 
-class About extends Component {
+class Contact extends Component {
   render () {
     return (
       <Layout url={this.props.url}>
         <main>
           <div>
-            <p>About</p>
+            <p>Contact</p>
           </div>
         </main>
       </Layout>
@@ -15,4 +15,4 @@ class About extends Component {
   }
 }
 
-export default About
+export default Contact

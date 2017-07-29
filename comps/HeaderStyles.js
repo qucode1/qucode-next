@@ -1,13 +1,3 @@
-export const base = `
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        margin: 0;
-        margin-top: 70px
-      }
-    `
-
 export const headerStyles = `
       .bg-image1 {
         position: fixed;

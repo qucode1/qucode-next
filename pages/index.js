@@ -1,9 +1,18 @@
+import { Component } from 'react'
 import Layout from '../comps/Layout'
 
-const Index = () => (
-  <Layout>
-    <p>New Version with Next.js</p>
-  </Layout>
-)
+class Index extends Component {
+  render () {
+    return (
+      <Layout url={this.props.url}>
+        <main>
+          <div>
+            <p>Index</p>
+          </div>
+        </main>
+      </Layout>
+    )
+  }
+}
 
 export default Index
