@@ -11,26 +11,22 @@ app.prepare()
 
   server.get('/about', (req, res) => {
     const actualPage = '/about'
-    const queryParams = { id: req.params.id }
-    app.render(req, res, actualPage, queryParams)
+    app.render(req, res, actualPage, {})
   })
 
   server.get('/portfolio', (req, res) => {
     const actualPage = '/portfolio'
-    const queryParams = { id: req.params.id }
-    app.render(req, res, actualPage, queryParams)
+    app.render(req, res, actualPage, {})
   })
 
   server.get('/contact', (req, res) => {
     const actualPage = '/contact'
-    const queryParams = { id: req.params.id }
-    app.render(req, res, actualPage, queryParams)
+    app.render(req, res, actualPage, {})
   })
 
   server.get('/', (req, res) => {
     const actualPage = '/index'
-    const queryParams = { id: req.params.id }
-    app.render(req, res, actualPage, queryParams)
+    app.render(req, res, actualPage, {})
   })
 
   server.get('*', (req, res) => {

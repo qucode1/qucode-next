@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import { Component } from 'react'
-import { headerStyles } from './HeaderStyles'
-import { basics } from './baseStyles'
-import { bg } from './baseStyles'
+import { headerStyles } from '../styles/HeaderStyles'
+import { basics } from '../styles/baseStyles'
+import { bg } from '../styles/baseStyles'
 
 const linkStyle = {
   marginRight: 15,

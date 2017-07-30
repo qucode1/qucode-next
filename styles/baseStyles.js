@@ -32,3 +32,19 @@ export const bg = `
     height: 100%;
   }
 `
+export const fullscreen = `
+  body > div:nth-child(1), body > div > div:nth-child(1), body > div > div > div, body > div > div > div > div {
+    width: 100%;
+    height: 100%
+  }
+  main {
+    width: 100%;
+    height: 100%
+  }
+`
+
+export const hidden = `
+  .hidden {
+    visibility: hidden
+  }
+`
