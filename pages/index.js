@@ -2,61 +2,120 @@ import { Component } from 'react'
 import Layout from '../comps/Layout'
 import { fullscreen, hidden } from '../styles/baseStyles'
 
+const Icon = (props) => (
+  <div className={props.hidden ? 'icon hidden' : 'icon'}>
+    {props.children}
+    <style jsx>{`
+      .icon {
+        background-color: rgba(85, 193, 0, 0.7);
+        width: var(--sSize);
+        height: var(--sSize);
+      }
+    `}</style>
+  </div>
+)
+
+const Row = (props) => (
+  <div className={(props.social ? 'social ' : '') + (props.profile ? 'profile ' : '') + 'row'}>
+    {props.children}
+    <style jsx>{`
+      .row {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: row;
+        width:  var(--size);
+        height: var(--sSize)
+      }
+      .profile.row {
+        height: var(--y);
+      }
+      .social.row {
+        width: var(--y);
+        height: var(--sSize)
+      }
+    `}</style>
+  </div>
+)
+
+const Column = (props) => (
+  <div className='column'>
+    {props.children}
+    <style jsx>{`
+      .column {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        width: var(--sSize);
+        height: var(--y);
+      }
+    `}</style>
+  </div>
+)
+
 class Index extends Component {
   render () {
-    const size = 50
-    const sSize = 7
     return (
       <Layout url={this.props.url}>
 
         <main>
           <div className='container'>
             <div className='centeredBox'>
-              <div className='row'>
-                <div className='social column'>
-                  <div className='icon hidden'></div>
-                </div>
-                <div className='social row'>
-                  <div className='icon'></div>
-                  <div className='icon'></div>
-                </div>
-                <div className='social column'>
-                  <div className='icon hidden'></div>
-                </div>
-              </div>
-              <div className='profileRow'>
-                <div className='social column'>
-                  <div className='icon'></div>
-                  <div className='icon'></div>
-                </div>
-                <div className='profile'></div>
-                <div className='social column'>
-                  <div className='icon'></div>
-                  <div className='icon'></div>
-                </div>
-              </div>
-              <div className='row'>
-                <div className='social column'>
-                  <div className='icon hidden'></div>
-                </div>
-                <div className='social row'>
-                  <div className='icon'></div>
-                  <div className='icon'></div>
-                </div>
-                <div className='social column'>
-                  <div className='icon hidden'></div>
-                </div>
-              </div>
+              {/* Placeholder Row for equal icon spacing (Upper Right) */}
+              <Row>
+                <Column>
+                  <Icon hidden/>
+                </Column>
+                <Row social>
+                  <Icon hidden/>
+                  <Icon hidden/>
+                </Row>
+                <Column>
+                  <Icon hidden/>
+                </Column>
+              </Row>
+              {/* Image Row with Lower Right Icons*/}
+              <Row profile>
+                <Column>
+                  <Icon hidden/>
+                  <Icon hidden/>
+                </Column>
+                <div className='profileImg'></div>
+                <Column>
+                  <Icon />
+                  <Icon />
+                </Column>
+              </Row>
+              {/* Lower Left Icons*/}
+              <Row>
+                <Column>
+                  <Icon hidden/>
+                </Column>
+                <Row social>
+                  <Icon />
+                  <Icon />
+                </Row>
+                <Column>
+                  <Icon hidden/>
+                </Column>
+              </Row>
             </div>
           </div>
           <style jsx global>{ fullscreen }</style>
           <style jsx global>{ hidden }</style>
           <style jsx global>{`
             :root {
-            --size: 50vW;
-            --sSize: 8vW;
+            --size: 65vW;
+            --sSize: 10.4vW;
             --x: calc(var(--size) - var(--sSize));
             --y: calc(var(--x) - var(--sSize));
+            }
+            @media only screen and (min-width: 690px) {
+              :root {
+                --size: 450px;
+                --sSize: 72px;
+                --x: calc(var(--size) - var(--sSize));
+                --y: calc(var(--x) - var(--sSize));
+              }
             }
           `}</style>
           <style jsx>{`
@@ -77,41 +136,7 @@ class Index extends Component {
               height: var(--size);
               // background-color: rgba(101, 24, 212, 0.61)
             }
-            .row {
-              display: flex;
-              justify-content: space-around;
-              flex-direction: row;
-              width:  var(--size);
-              height: var(--sSize)
-            }
-            .profileRow {
-              display: flex;
-              justify-content: space-around;
-              flex-direction: row;
-              width: var(--size);
-              height: var(--y);
-            }
-            .column {
-              display: flex;
-              justify-content: space-around;
-              flex-direction: column;
-              height: var(--size);
-              width: var(--sSize)
-            }
-            .social.row {
-              width: var(--y);
-              height: var(--sSize)
-            }
-            .social.column {
-              width: var(--sSize);
-              height: var(--y);
-            }
-            .icon {
-              background-color: rgba(85, 193, 0, 0.7);
-              width: var(--sSize);
-              height: var(--sSize);
-            }
-            .profile {
+            .profileImg {
               background-color: rgba(37, 148, 254, 0.74);
               width: var(--y);
               height: var(--y);
