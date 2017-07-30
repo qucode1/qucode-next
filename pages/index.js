@@ -51,11 +51,15 @@ class Index extends Component {
           </div>
           <style jsx global>{ fullscreen }</style>
           <style jsx global>{ hidden }</style>
-          <style jsx>{`
+          <style jsx global>{`
             :root {
-              --size: 50;
-              --sSize: 7;
+            --size: 50vW;
+            --sSize: 8vW;
+            --x: calc(var(--size) - var(--sSize));
+            --y: calc(var(--x) - var(--sSize));
             }
+          `}</style>
+          <style jsx>{`
             .container {
               width: 100%;
               height: 100%;
@@ -69,48 +73,48 @@ class Index extends Component {
               justify-content: center;
               align-items: center;
               transform: rotateZ(45deg);
-              width: var(size)vW;
-              height: var(size)vW;
+              width: var(--size);
+              height: var(--size);
               // background-color: rgba(101, 24, 212, 0.61)
             }
             .row {
               display: flex;
               justify-content: space-around;
               flex-direction: row;
-              width: 50vW;
-              height: 7vW
+              width:  var(--size);
+              height: var(--sSize)
             }
             .profileRow {
               display: flex;
               justify-content: space-around;
               flex-direction: row;
-              width: 50vW;
-              height: 36vW
+              width: var(--size);
+              height: var(--y);
             }
             .column {
               display: flex;
               justify-content: space-around;
               flex-direction: column;
-              height: 50vW;
-              width: 7vW
+              height: var(--size);
+              width: var(--sSize)
             }
             .social.row {
-              width: 36vW;
-              height: 7vW
+              width: var(--y);
+              height: var(--sSize)
             }
             .social.column {
-              width: 7vW;
-              height: 36vW
+              width: var(--sSize);
+              height: var(--y);
             }
             .icon {
               background-color: rgba(85, 193, 0, 0.7);
-              width: 7vW;
-              height: 7vW;
+              width: var(--sSize);
+              height: var(--sSize);
             }
             .profile {
               background-color: rgba(37, 148, 254, 0.74);
-              width: 36vw;
-              height: 36vW;
+              width: var(--y);
+              height: var(--y);
               // margin: 5px
             }
           `}</style>
