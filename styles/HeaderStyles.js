@@ -13,7 +13,7 @@ export const headerStyles = `
         height: 100%;
         filter: grayscale(100%) brightness(50%)
       }
-      .bg-image2 {
+      .bg-gradient {
         position: fixed;
         left: 0;
         right: 0;

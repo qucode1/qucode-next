@@ -25,7 +25,7 @@ class Header extends Component {
     return (
       <div>
         <div className={isIndex ? 'bg-image1' : 'baseBg'}/>
-        <div className={isIndex && 'bg-image2'}/>
+        <div className={isIndex && 'bg-gradient'}/>
         <nav>
           <div className="topNav">
             <img src="/static/logo.png"/>

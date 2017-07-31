@@ -109,6 +109,9 @@ class Index extends Component {
             --x: calc(var(--size) - var(--sSize));
             --y: calc(var(--x) - var(--sSize));
             }
+            body {
+              overflow: hidden
+            }
             @media only screen and (min-width: 690px) {
               :root {
                 --size: 450px;

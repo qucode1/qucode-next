@@ -1,13 +1,35 @@
 const express = require('express')
 const next = require('next')
+const mongoose = require('mongoose')
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+
+require('dotenv').config({ path: 'variables.env' });
 
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
+mongoose.connect(process.env.DATABASE, {
+  useMongoClient: true
+})
+mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
+mongoose.connection.on('error', (err) => {
+  console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
+});
+
+
 app.prepare()
 .then(() => {
   const server = express()
+
+  server.use(session({
+    secret: process.env.SECRET,
+    key: process.env.KEY,
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
+  }));
 
   server.get('/about', (req, res) => {
     const actualPage = '/about'
