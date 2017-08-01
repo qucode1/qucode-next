@@ -15,13 +15,23 @@ const collapseNavBtn = () => {
   })
 }
 
+const isActive = (currentPath, toCheck) => (
+  toCheck !== "/"
+  ? (
+    currentPath.startsWith(toCheck) ? "active" : "" )
+  : (
+    (currentPath === "/" || currentPath === "/index") && "active"
+  )
+)
+
 class Header extends Component {
   componentDidMount() {
     collapseNavBtn()
   }
   render() {
-    console.log(this.props)
-    const isIndex = this.props.url.pathname === '/index' || this.props.url.pathname === '/'
+    // console.log(this.props)
+    const path = this.props.url.pathname
+    const isIndex = path === '/index' || path === '/'
     return (
       <div>
         <div className={isIndex ? 'bg-image1' : 'baseBg'}/>
@@ -50,22 +60,22 @@ class Header extends Component {
             <ul>
               <li>
                 <Link href="/">
-                  <a>Home</a>
+                  <a className={isActive(path, "/")}>Home</a>
                 </Link>
               </li>
               <li>
                 <Link href="/about">
-                  <a>About</a>
+                  <a className={isActive(path, "/about")}>About</a>
                 </Link>
               </li>
               <li>
                 <Link href="/portfolio">
-                  <a>Portfolio</a>
+                  <a className={isActive(path, "/portfolio")}>Portfolio</a>
                 </Link>
               </li>
               <li>
                 <Link href="/contact">
-                  <a>Contact</a>
+                  <a className={isActive(path, "/contact")}>Contact</a>
                 </Link>
               </li>
             </ul>

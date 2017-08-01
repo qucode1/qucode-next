@@ -32,12 +32,14 @@ const Skill = (props) => (
 class About extends Component {
   static async getInitialProps() {
     let skills = await fetch('http://localhost:3001/skills')
+    let texts = await fetch('http://localhost:3001/texts/c/about')
+    texts = await texts.json()
     skills = await skills.json()
-    return { skills }
+
+    return { skills, texts }
   }
   render () {
-    console.log(this.props.skills)
-    console.log(this.props.skills[0].name)
+    console.log(this.props.texts)
     return (
       <Layout url={this.props.url}>
         <main>
@@ -56,7 +58,7 @@ class About extends Component {
                 <p>Goal</p>
               </div>
               <div className="content">
-                <p>Aspiring Full Stack Developer</p>
+                <p>{this.props.texts.find(text => text.name === "goal").content}</p>
               </div>
             </div>
             <div className="row">
@@ -65,7 +67,7 @@ class About extends Component {
               </div>
               <div className="content">
               {this.props.skills.map((skill) => (
-                <Skill {...skill}/>
+                <Skill key={skill._id} {...skill}/>
               ))}
               </div>
             </div>
@@ -74,7 +76,7 @@ class About extends Component {
                 <p>Currently Learning</p>
               </div>
               <div className="content">
-                <p>Aspiring Full Stack Developer</p>
+                <p>{this.props.texts.find(text => text.name === "learning").content}</p>
               </div>
             </div>
             <div className="row">
@@ -82,7 +84,8 @@ class About extends Component {
                 <p>My Story</p>
               </div>
               <div className="content">
-                <p>Aspiring Full Stack Developer</p>
+                <p>{this.props.texts.find(text => text.name === "story-en").content}</p>
+                <p>{this.props.texts.find(text => text.name === "story-de").content}</p>
               </div>
             </div>
           </div>
