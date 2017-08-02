@@ -23,32 +23,4 @@ export const aboutStyles = `
     height: 100%;
     background-color: #fff
   }
-  .row {
-    display: flex;
-    flex-direction: column
-  }
-  .row:nth-child(even) {
-    background-color: #fff
-  }
-  .title, .content {
-    padding: 5px
-  }
-  .title {
-    flex: 1;
-    font-weight: bold
-  }
-  .content {
-    flex: 3;
-  }
-  @media only screen and (min-width: 600px) {
-    .row {
-      flex-direction: row
-    }
-    .title {
-      background-color: lightblue
-    }
-    .content {
-      background-color: #fff
-    }
-  }
 `

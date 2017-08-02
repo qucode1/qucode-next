@@ -29,6 +29,52 @@ const Skill = (props) => (
   </div>
 )
 
+const Row = (props) => (
+  <div className="row">
+    {props.children}
+    <style jsx>{`
+      .row {
+        display: flex;
+        flex-direction: column
+      }
+      .row:nth-child(even) {
+        background-color: #fff
+      }
+      @media only screen and (min-width: 600px) {
+        .row {
+          flex-direction: row
+        }
+      }
+    `}</style>
+  </div>
+)
+
+const Item = (props) => (
+  <div className={props.class}>
+    {props.children}
+    <style jsx>{`
+      .title, .content {
+        padding: 5px
+      }
+      .title {
+        flex: 1;
+        font-weight: bold
+      }
+      .content {
+        flex: 3;
+      }
+      @media only screen and (min-width: 600px) {
+        .title {
+          background-color: lightblue
+        }
+        .content {
+          background-color: #fff
+        }
+      }
+    `}</style>
+  </div>
+)
+
 class About extends Component {
   static async getInitialProps() {
     let skills = await fetch('http://localhost:3001/skills')
@@ -45,49 +91,49 @@ class About extends Component {
         <main>
           <div className="container">
 
-            <div className="row">
-              <div className="title">
+            <Row>
+              <Item class="title">
                 <p>Name</p>
-              </div>
-              <div className="content">
+              </Item>
+              <Item class="content">
                 <p>Yannick Panis</p>
-              </div>
-            </div>
-            <div className="row">
-              <div className="title">
+              </Item>
+            </Row>
+            <Row>
+              <Item class="title">
                 <p>Goal</p>
-              </div>
-              <div className="content">
+              </Item>
+              <Item class="content">
                 <p>{this.props.texts.find(text => text.name === "goal").content}</p>
-              </div>
-            </div>
-            <div className="row">
-              <div className="title">
+              </Item>
+            </Row>
+            <Row>
+              <Item class="title">
                 <p>Skills</p>
-              </div>
-              <div className="content">
+              </Item>
+              <Item class="content">
               {this.props.skills.map((skill) => (
                 <Skill key={skill._id} {...skill}/>
               ))}
-              </div>
-            </div>
-            <div className="row">
-              <div className="title">
+              </Item>
+            </Row>
+            <Row>
+              <Item class="title">
                 <p>Currently Learning</p>
-              </div>
-              <div className="content">
+              </Item>
+              <Item class="content">
                 <p>{this.props.texts.find(text => text.name === "learning").content}</p>
-              </div>
-            </div>
-            <div className="row">
-              <div className="title">
+              </Item>
+            </Row>
+            <Row>
+              <Item class="title">
                 <p>My Story</p>
-              </div>
-              <div className="content">
+              </Item>
+              <Item class="content">
                 <p>{this.props.texts.find(text => text.name === "story-en").content}</p>
                 <p>{this.props.texts.find(text => text.name === "story-de").content}</p>
-              </div>
-            </div>
+              </Item>
+            </Row>
           </div>
         </main>
         <style jsx>{ aboutStyles }</style>
