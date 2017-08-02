@@ -137,7 +137,7 @@ export const headerStyles = `
         .links ul li a.active {
           border-bottom: 3px solid #fff;
         }
-        .links ul li a:hover:not(.active) {
+        .links ul li a:hover:not(.active), .links ul li a:focus:not(.active) {
           border-bottom: 3px solid rgba(255, 255, 255, 0.9);
         }
         .links ul {

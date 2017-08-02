@@ -5,12 +5,14 @@ import fetch from 'isomorphic-unfetch'
 import { aboutStyles } from '../styles/aboutStyles'
 
 const Skill = (props) => (
-  <div key={props._id}>
-    <p>{props.name}</p>
+  <div className="skill" key={props._id}>
+    <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+      <p>{props.name}</p>
+      <img src={props.image} style={{height: "45px"}}/>
+    </div>
     <div className="prog-cont">
       <div className="prog-val" style={{width: props.progress, backgroundColor: props.color}}></div>
     </div>
-    <img src={props.image} />
     <style jsx>{`
       .prog-cont {
         width: 90%;
@@ -24,6 +26,9 @@ const Skill = (props) => (
         height: 100%;
         border-radius: 10px;
         background-color: purple
+      }
+      .skill {
+        width: 45%
       }
     `}</style>
   </div>
@@ -54,7 +59,7 @@ const Item = (props) => (
     {props.children}
     <style jsx>{`
       .title, .content {
-        padding: 5px
+        padding: 0 5px
       }
       .title {
         flex: 1;
@@ -62,10 +67,12 @@ const Item = (props) => (
       }
       .content {
         flex: 3;
+        display: flex;
+        flex-wrap: wrap
       }
       @media only screen and (min-width: 600px) {
         .title {
-          // background-color: rgb(8, 179, 22);
+          padding: 5px;
           border-right: 2px solid rgb(13, 100, 148);
           color: white;
           font-weight: normal
@@ -74,7 +81,7 @@ const Item = (props) => (
           background-image: linear-gradient(to bottom, rgb(54, 173, 239), rgb(32, 161, 232));
         }
         .content {
-          // background-color: #fff
+          padding: 5px
         }
       }
     `}</style>
