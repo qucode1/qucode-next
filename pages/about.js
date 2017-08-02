@@ -65,10 +65,16 @@ const Item = (props) => (
       }
       @media only screen and (min-width: 600px) {
         .title {
-          background-color: lightblue
+          // background-color: rgb(8, 179, 22);
+          border-right: 2px solid rgb(13, 100, 148);
+          color: white;
+          font-weight: normal
+          text-align: right;
+          letter-spacing: 1.5px;
+          background-image: linear-gradient(to bottom, rgb(54, 173, 239), rgb(32, 161, 232));
         }
         .content {
-          background-color: #fff
+          // background-color: #fff
         }
       }
     `}</style>

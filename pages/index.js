@@ -79,7 +79,9 @@ class Index extends Component {
                   <Icon hidden/>
                   <Icon hidden/>
                 </Column>
-                <div className='profileImg'></div>
+                <div className='profileImg'>
+                  <img src="/static/profile.jpg" />
+                </div>
                 <Column>
                   <Icon />
                   <Icon />
@@ -143,7 +145,15 @@ class Index extends Component {
               background-color: rgba(37, 148, 254, 0.74);
               width: var(--y);
               height: var(--y);
+              overflow: hidden;
+              display: flex;
+              justify-content: center;
+              align-items: center
               // margin: 5px
+            }
+            .profileImg > img {
+              transform: rotateZ(-45deg);
+              width: 145%
             }
           `}</style>
         </main>

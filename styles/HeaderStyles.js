@@ -38,7 +38,6 @@ export const headerStyles = `
         position: fixed;
         top: 0;
         font-size: 1.5em;
-        padding: 0 10px 0;
         z-index: 50
       }
       .topNav {
@@ -46,7 +45,8 @@ export const headerStyles = `
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        color: #fff
+        color: #fff;
+        padding: 0 10px 0;
       }
       .links ul li {
         list-style: none;
@@ -76,6 +76,8 @@ export const headerStyles = `
         transition: height .3s;
         overflow: hidden;
         visibility: visible;
+        background-image: linear-gradient(to bottom, rgb(78, 192, 255), rgb(51, 169, 234));
+        border-top: 1px solid rgb(5, 114, 175);
       }
       #collapseNavBtn {
         display: inline-block;
@@ -125,7 +127,8 @@ export const headerStyles = `
           height: auto;
           align-self: center;
           overflow: visible;
-          height: 70px
+          height: 70px;
+          background-image: none
         }
         .links ul li a {
           border-bottom: 3px solid transparent;
