@@ -18,13 +18,13 @@ export const formStyles = `
     top: 25px;
     transition: 0.3s top ease-out
   }
-  .formFilled {
-    color: rgb(80, 80, 80);
+  .isActive {
+    color: #1fa4ed;
     visibility: visible;
     top: 0px
   }
-  .formActive {
-    color: #1fa4ed;
+  .isFilled {
+    color: rgb(80, 80, 80);
     visibility: visible;
     top: 0px
   }
