@@ -2,7 +2,8 @@ import { Component } from 'react'
 import Layout from '../comps/Layout'
 import fetch from 'isomorphic-unfetch'
 
-import { aboutStyles } from '../styles/aboutStyles'
+// import { aboutStyles } from '../styles/aboutStyles'
+import { container } from '../styles/baseStyles'
 
 const Skill = (props) => (
   <div className="skill" key={props._id}>
@@ -40,7 +41,8 @@ const Row = (props) => (
     <style jsx>{`
       .row {
         display: flex;
-        flex-direction: column
+        flex-direction: column;
+        background-color: #eaf8ff
       }
       .row:nth-child(even) {
         background-color: #fff
@@ -149,7 +151,7 @@ class About extends Component {
             </Row>
           </div>
         </main>
-        <style jsx>{ aboutStyles }</style>
+        <style jsx>{ container }</style>
       </Layout>
     )
   }
