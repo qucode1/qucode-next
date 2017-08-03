@@ -10,15 +10,13 @@ class Input extends Component {
     this.handleFocus = this.handleFocus.bind(this)
   }
   handleFocus (e) {
-    console.log(this.Label);
+    // console.log(this.Label);
     e.nativeEvent.type === "focus"
     ? this.Label.classList.add("formActive")
-    : ( this.Label.classList.remove("formActive")
-      (e.target.value.length >= 1 && !this.Label.classList.contains("formFilled")
-        ? this.Label.classList.add("formFilled")
-        : e.target.value.length < 1 && this.Label.classList.remove("formFilled")
-      )
-    )
+    : this.Label.classList.remove("formActive")
+    e.target.value.length >= 1 && !this.Label.classList.contains("formFilled")
+    ? this.Label.classList.add("formFilled")
+    : e.target.value.length < 1 && this.Label.classList.remove("formFilled")
   }
   render() {
     return (
@@ -37,15 +35,13 @@ class Textarea extends Component {
     this.handleFocus = this.handleFocus.bind(this)
   }
   handleFocus (e) {
-    console.log(this.TextArea);
+    // console.log(this.TextArea);
     e.nativeEvent.type === "focus"
     ? this.TextArea.classList.add("formActive")
-    : ( this.TextArea.classList.remove("formActive")
-      (e.target.value.length >= 1 && !this.TextArea.classList.contains("formFilled")
-        ? this.TextArea.classList.add("formFilled")
-        : e.target.value.length < 1 && this.TextArea.classList.remove("formFilled")
-      )
-    )
+    : this.TextArea.classList.remove("formActive")
+    e.target.value.length >= 1 && !this.TextArea.classList.contains("formFilled")
+    ? this.TextArea.classList.add("formFilled")
+    : e.target.value.length < 1 && this.TextArea.classList.remove("formFilled")
   }
   render() {
     return(
