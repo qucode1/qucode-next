@@ -92,15 +92,15 @@ const Item = (props) => (
 
 class About extends Component {
   static async getInitialProps() {
-    let skills = await fetch('http://localhost:3001/skills')
-    let texts = await fetch('http://localhost:3001/texts/c/about')
+    let skills = await fetch(`${process.env.PUBLICAPI}skills`)
+    let texts = await fetch(`${process.env.PUBLICAPI}texts/c/about`)
     texts = await texts.json()
     skills = await skills.json()
 
     return { skills, texts }
   }
   render () {
-    console.log(this.props.texts)
+    // console.log(this.props.texts)
     return (
       <Layout url={this.props.url}>
         <main>
