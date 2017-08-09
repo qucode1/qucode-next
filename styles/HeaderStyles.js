@@ -38,7 +38,8 @@ export const headerStyles = `
         position: fixed;
         top: 0;
         font-size: 1.5em;
-        z-index: 50
+        z-index: 50;
+        overflow: hidden
       }
       .topNav {
         display: flex;
@@ -128,7 +129,8 @@ export const headerStyles = `
           align-self: center;
           overflow: visible;
           height: 70px;
-          background-image: none
+          background-image: none;
+          border-top: none
         }
         .links ul li a {
           border-bottom: 3px solid transparent;

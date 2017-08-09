@@ -17,6 +17,13 @@ export const basics = `
     padding-top: 70px
   }
 `
+export const colors = `
+  :root {
+    --yellow: rgb(255, 200, 0);
+    --blue: rgb(31, 164, 237);
+    --black: #262625
+  }
+`
 export const bg = `
   .baseBg {
     background-color: rgb(245, 250, 254);

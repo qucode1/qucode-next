@@ -2,6 +2,7 @@ import { Component } from 'react'
 import Layout from '../comps/Layout'
 
 import { container } from '../styles/baseStyles'
+import { colors } from '../styles/baseStyles'
 import { formStyles, button } from '../styles/formStyles'
 
 class Input extends Component {
@@ -40,6 +41,13 @@ class Input extends Component {
         />
       <style jsx>{ formStyles }</style>
       <style jsx>{ button }</style>
+      <style jsx>{`
+        .button {
+          background-color: var(--yellow);
+          color: var(--black)
+        }
+      `}
+      </style>
       </div>
     )
   }
@@ -118,6 +126,7 @@ class Contact extends Component {
           </div>
         </main>
         <style jsx>{ container }</style>
+        <style jsx global>{ colors }</style>
         <style jsx>{`
           .container {
             display: flex;
