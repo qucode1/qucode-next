@@ -41,7 +41,8 @@ const Modal = (props) => (
       }
       .infos {
         display: flex;
-        flex-direction: column
+        flex-direction: column;
+        margin: 10px
       }
       .descr {
         color: var(--white)
@@ -91,6 +92,8 @@ const Card = (props) => (
     <style jsx>{`
       .card {
         position: relative;
+        box-shadow: 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24);
+        background-color: #fff;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -114,7 +117,7 @@ const Card = (props) => (
         max-width: 30px;
         max-height: 30px;
         background-color: var(--yellow);
-        transition: 0.25s ease-in-out
+        transition: 0.25s ease-in
       }
       .tl {
         top: 0;
@@ -183,7 +186,6 @@ class Portfolio extends Component {
             {this.props.projects.map(project =>
               (<Card key={project._id} project={project} onClick={this.handleModal} />)
             )}
-            <p>TESTING PROJECT API. Projects should be listed here</p>
           </div>
           {this.state.modalOn && <Modal {...this.state.modalData} onClick={this.handleModal}/>}
         </main>
