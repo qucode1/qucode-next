@@ -9,8 +9,9 @@ require('dotenv').config({ path: 'variables.env' });
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
+const database = process.env.DATABASE || "http://localhost:3001/"
 
-mongoose.connect(process.env.DATABASE, {
+mongoose.connect(database, {
   useMongoClient: true
 })
 mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
@@ -55,7 +56,7 @@ app.prepare()
     return handle(req, res)
   })
 
-  server.listen(3000, (err) => {
+  server.listen(3002, (err) => {
     if (err) throw err
     console.log('> Ready on http://localhost:3000')
   })
