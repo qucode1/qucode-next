@@ -7,11 +7,13 @@ import Link from 'next/link'
 const Modal = (props) => (
   <div className="dark fullscreen container" onClick={props.onClick}>
 
-    <p className="close">X</p>
+    <a href="#" className="close">✖</a>
     <img src={props.image} alt={props.name} />
     <div className="infos">
-      <p>{props.name}</p>
-      <p>{props.description}</p>
+      <p>
+        <a href={props.url || "#"} target="_blank">{props.name} ➡</a>
+      </p>
+      <p className="descr">{props.description}</p>
       <div>
         {props.tags.map(tag => (
           <p key={tag} className="tag">{tag}</p>
@@ -40,6 +42,9 @@ const Modal = (props) => (
       .infos {
         display: flex;
         flex-direction: column
+      }
+      .descr {
+        color: var(--white)
       }
       .tags {
         display: flex;
@@ -94,6 +99,7 @@ const Card = (props) => (
         max-width: 297px;
         max-height: 170.13px;
         margin: 5px;
+        cursor: pointer
       }
       .card:hover .corner, .card:focus .corner {
         width: 30.2vW;
@@ -181,7 +187,6 @@ class Portfolio extends Component {
           </div>
           {this.state.modalOn && <Modal {...this.state.modalData} onClick={this.handleModal}/>}
         </main>
-        <style jsx global>{ colors }</style>
         <style jsx>{`
           .gallery {
             display: flex;

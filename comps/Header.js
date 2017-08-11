@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Component } from 'react'
 import { headerStyles } from '../styles/HeaderStyles'
 import { basics } from '../styles/baseStyles'
+import { colors } from '../styles/baseStyles'
 import { bg } from '../styles/baseStyles'
 
 const linkStyle = {
@@ -82,6 +83,7 @@ class Header extends Component {
           </div>
           <div className="placeholder"></div>
         </nav>
+        <style jsx global>{ colors }</style>
         <style jsx global>{ basics }</style>
         <style jsx>{ headerStyles }</style>
         <style jsx>{ bg }</style>

@@ -6,7 +6,8 @@ export const basics = `
     height: 100%;
     width: 100%;
     margin: 0;
-    padding: 0
+    padding: 0;
+    color: var(--black)
   }
   body {
     margin: 0;
@@ -16,12 +17,20 @@ export const basics = `
   main {
     padding-top: 70px
   }
+  a {
+    text-decoration: none;
+    color: var(--blue)
+  }
+  a:hover, a:focus {
+    text-decoration: underline
+  }
 `
 export const colors = `
   :root {
     --yellow: rgb(255, 200, 0);
     --blue: rgb(31, 164, 237);
-    --black: #262625
+    --black: #262625;
+    --white: #e9e9e9
   }
 `
 export const bg = `

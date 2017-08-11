@@ -7,9 +7,9 @@ import { container } from '../styles/baseStyles'
 
 const Skill = (props) => (
   <div className="skill" key={props._id}>
-    <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+    <div style={{display: "flex", alignItems: "center", justifyContent: "flex-start"}}>
+      <img src={props.image} style={{height: "40px"}}/>
       <p>{props.name}</p>
-      <img src={props.image} style={{height: "45px"}}/>
     </div>
     <div className="prog-cont">
       <div className="prog-val" style={{width: props.progress, backgroundColor: props.color}}></div>
@@ -17,10 +17,10 @@ const Skill = (props) => (
     <style jsx>{`
       .prog-cont {
         width: 90%;
-        height: 10px;
-        border-radius: 10px;
+        height: 8px;
+        border-radius: 8px;
         background-color: lightgrey;
-        margin: auto;
+        margin: 0 auto 5px auto;
       }
       .prog-val {
         width: 50%;

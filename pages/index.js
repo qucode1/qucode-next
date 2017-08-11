@@ -1,15 +1,18 @@
 import { Component } from 'react'
 import Layout from '../comps/Layout'
-import { fullscreen, hidden } from '../styles/baseStyles'
+import { fullscreen, hidden, colors } from '../styles/baseStyles'
 
 const Icon = (props) => (
   <div className={props.hidden ? 'icon hidden' : 'icon'}>
     {props.children}
     <style jsx>{`
       .icon {
-        background-color: rgba(85, 193, 0, 0.7);
+        // background-color: #e9e9e9;
         width: var(--sSize);
         height: var(--sSize);
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     `}</style>
   </div>
@@ -83,8 +86,16 @@ class Index extends Component {
                   <img src="/static/profile.jpg" />
                 </div>
                 <Column>
-                  <Icon />
-                  <Icon />
+                  <Icon>
+                    <a className="socialLink" href='https://github.com/qucode1' target="_blank">
+                      <i className="fa fa-github" aria-hidden="true"></i>
+                    </a>
+                  </Icon>
+                  <Icon>
+                    <a className="socialLink" href='https://twitter.com/qucode' target="_blank">
+                      <i className="fa fa-twitter" aria-hidden="true"></i>
+                    </a>
+                  </Icon>
                 </Column>
               </Row>
               {/* Lower Left Icons*/}
@@ -93,8 +104,16 @@ class Index extends Component {
                   <Icon hidden/>
                 </Column>
                 <Row social>
-                  <Icon />
-                  <Icon />
+                  <Icon>
+                    <a className="socialLink" href='https://trello.com/yannickpanis' target="_blank">
+                      <i className="fa fa-trello" aria-hidden="true"></i>
+                    </a>
+                  </Icon>
+                  <Icon>
+                    <a className="socialLink" href='https://codepen.io/Quinius/' target="_blank">
+                      <i className="fa fa-codepen" aria-hidden="true"></i>
+                    </a>
+                  </Icon>
                 </Row>
                 <Column>
                   <Icon hidden/>
@@ -102,6 +121,7 @@ class Index extends Component {
               </Row>
             </div>
           </div>
+          <style jsx global>{ colors }</style>
           <style jsx global>{ fullscreen }</style>
           <style jsx global>{ hidden }</style>
           <style jsx global>{`
@@ -154,6 +174,23 @@ class Index extends Component {
             .profileImg > img {
               transform: rotateZ(-45deg);
               width: 145%
+            }
+            .fa {
+              transform: rotate(-45deg);
+              font-size: 7vW
+              // 3.5em
+            }
+            .socialLink {
+              color: var(--white)
+            }
+            .socialLink:hover, .socialLink:focus {
+              color: var(--yellow);
+              text-decoration: none
+            }
+            @media only screen and (min-width: 690px) {
+              .fa {
+                font-size: 3em
+              }
             }
           `}</style>
         </main>
