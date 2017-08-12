@@ -5,6 +5,8 @@ import { container } from '../styles/baseStyles'
 import { colors } from '../styles/baseStyles'
 import { formStyles, button } from '../styles/formStyles'
 
+const variables = require('../variables.json')
+
 class Input extends Component {
   constructor(props) {
     super(props)
@@ -110,7 +112,7 @@ class Form extends Component {
 
 class Contact extends Component {
   render () {
-    const postRoute = `${process.env.PUBLICAPI}contact`
+    const postRoute = `${variables.PUBLICAPI}contact`
     return (
       <Layout url={this.props.url}>
         <main>

@@ -3,6 +3,7 @@ import Layout from '../../comps/Layout'
 import { colors } from '../../styles/baseStyles'
 import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
+const variables = require('../../variables.json')
 
 const Modal = (props) => (
   <div className="dark fullscreen container" onClick={props.onClick}>
@@ -156,7 +157,7 @@ const Card = (props) => (
 
 class Portfolio extends Component {
   static async getInitialProps() {
-    let projects = await fetch(`${process.env.PUBLICAPI}projects`)
+    let projects = await fetch(`${variables.PUBLICAPI}projects`)
     projects = await projects.json()
     return {projects}
   }

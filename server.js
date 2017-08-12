@@ -4,12 +4,14 @@ const mongoose = require('mongoose')
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
-require('dotenv').config({ path: 'variables.env' });
-
+// require('dotenv').config({ path: 'variables.env' });
 const dev = process.env.NODE_ENV !== 'production'
+const variables = require('./variables.json')
+
 const app = next({ dev })
 const handle = app.getRequestHandler()
-const database = process.env.DATABASE || "http://localhost:3001/"
+const database = variables.DATABASE
+const port = variables.PORT
 
 mongoose.connect(database, {
   useMongoClient: true
@@ -25,8 +27,8 @@ app.prepare()
   const server = express()
 
   server.use(session({
-    secret: process.env.SECRET,
-    key: process.env.KEY,
+    secret: variables.SECRET,
+    key: variables.KEY,
     resave: false,
     saveUninitialized: false,
     store: new MongoStore({ mongooseConnection: mongoose.connection })
@@ -56,9 +58,9 @@ app.prepare()
     return handle(req, res)
   })
 
-  server.listen(3002, (err) => {
+  server.listen(port, (err) => {
     if (err) throw err
-    console.log('> Ready on http://localhost:3000')
+    console.log(`> Ready on Port:${port}`)
   })
 })
 .catch((ex) => {

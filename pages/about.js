@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import Layout from '../comps/Layout'
 import fetch from 'isomorphic-unfetch'
-
+const variables = require('../variables.json')
 // import { aboutStyles } from '../styles/aboutStyles'
 import { container } from '../styles/baseStyles'
 
@@ -92,8 +92,8 @@ const Item = (props) => (
 
 class About extends Component {
   static async getInitialProps() {
-    let skills = await fetch(`${process.env.PUBLICAPI}skills`)
-    let texts = await fetch(`${process.env.PUBLICAPI}texts/c/about`)
+    let skills = await fetch(`${variables.PUBLICAPI}skills`)
+    let texts = await fetch(`${variables.PUBLICAPI}texts/c/about`)
     texts = await texts.json()
     skills = await skills.json()
 
