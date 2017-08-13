@@ -3,7 +3,7 @@ export const dimensions = `
   --size: 65vW;
   --sSize: 10.4vW;
   --x: calc(var(--size) - var(--sSize));
-  --y: calc(var(--x) - var(--sSize));
+  --y: calc((var(--size) - var(--sSize)) - var(--sSize));
   }
   body {
     overflow: hidden
