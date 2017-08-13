@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import Layout from '../comps/Layout'
 import { fullscreen, hidden, colors } from '../styles/baseStyles'
+import { dimensions } from '../styles/indexStyles'
 
 const Icon = (props) => (
   <div className={props.hidden ? 'icon hidden' : 'icon'}>
@@ -22,6 +23,7 @@ const Row = (props) => (
   <div className={(props.social ? 'social ' : '') + (props.profile ? 'profile ' : '') + 'row'}>
     {props.children}
     <style jsx>{`
+
       .row {
         display: flex;
         justify-content: space-around;
@@ -44,6 +46,7 @@ const Column = (props) => (
   <div className='column'>
     {props.children}
     <style jsx>{`
+
       .column {
         display: flex;
         justify-content: space-around;
@@ -124,25 +127,8 @@ class Index extends Component {
           <style jsx global>{ colors }</style>
           <style jsx global>{ fullscreen }</style>
           <style jsx global>{ hidden }</style>
-          <style jsx global>{`
-            :root {
-            --size: 65vW;
-            --sSize: 10.4vW;
-            --x: calc(var(--size) - var(--sSize));
-            --y: calc(var(--x) - var(--sSize));
-            }
-            body {
-              overflow: hidden
-            }
-            @media only screen and (min-width: 690px) {
-              :root {
-                --size: 450px;
-                --sSize: 72px;
-                --x: calc(var(--size) - var(--sSize));
-                --y: calc(var(--x) - var(--sSize));
-              }
-            }
-          `}</style>
+          <style jsx global>{ dimensions }</style>
+
           <style jsx>{`
             .container {
               width: 100%;
@@ -163,7 +149,7 @@ class Index extends Component {
             }
             .profileImg {
               background-color: rgba(37, 148, 254, 0.74);
-              width: var(--y);
+              width: var(--y, 250px);
               height: var(--y);
               overflow: hidden;
               display: flex;
@@ -173,7 +159,8 @@ class Index extends Component {
             }
             .profileImg > img {
               transform: rotateZ(-45deg);
-              width: 145%
+              height: 145%;
+              width: 145%;
             }
             .fa {
               transform: rotate(-45deg);

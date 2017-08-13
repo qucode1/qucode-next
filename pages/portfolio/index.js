@@ -24,7 +24,7 @@ const Modal = (props) => (
     </div>
     <style jsx>{`
       .fullscreen {
-        position: absolute;
+        position: fixed;
         width: 100%;
         height: 100%;
         top: 0;
