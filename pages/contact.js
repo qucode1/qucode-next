@@ -1,11 +1,57 @@
 import { Component } from 'react'
 import Layout from '../comps/Layout'
+import axios from 'axios'
 
 import { container } from '../styles/baseStyles'
 import { colors } from '../styles/baseStyles'
 import { formStyles, button } from '../styles/formStyles'
 
 const variables = require('../variables.json')
+
+const postRoute = `${variables.PUBLICAPI}contact`
+
+class Info extends Component {
+  render() {
+    return (
+      <div>
+        {!this.props.info
+        ? (this.props.info !== false
+          ? <div></div>
+          : <div className='info failure'>❗ Message could not be sent! Please try again later. ❗</div>)
+        : (this.props.info !== true
+          ? <div className='info'>{ this.props.info } 💬</div>
+          : <div className='info success'>Message has been sent! ✔</div>)
+        }
+        <style jsx>{`
+          .info {
+            padding: 5px 15px;
+            background-color: rgb(144, 215, 255);
+            border-radius: 5px;
+            margin: 10px auto;
+          }
+          .success {
+            background-color: rgb(162, 241, 8)
+          }
+          .failure {
+            background-color: rgb(255, 55, 55)
+          }
+        `}
+        </style>
+      </div>
+    )
+  }
+}
+//   return {
+//   if(!props.info && props.info !== false) return null
+//   else if(!props.info) {
+//     <div>Message could not be sent! Please try again later.</div>
+//   }
+//   else if( props.info && props.info !== true ) {
+//     <div>{ props.info }</div>
+//   } else {
+//     <div>Message has been sent!</div>
+//   }
+// }
 
 class Input extends Component {
   constructor(props) {
@@ -40,6 +86,8 @@ class Input extends Component {
                id={this.props.name}
                className={this.props.type === "submit" && "button"}
                {...this.props}
+               value={this.props.value}
+               onChange={this.props.onChange}
         />
       <style jsx>{ formStyles }</style>
       <style jsx>{ button }</style>
@@ -86,7 +134,10 @@ class Textarea extends Component {
         <textarea id={this.props.name}
                   onFocus={this.handleFocus}
                   onBlur={this.handleFocus}
-                  {...this.props}>
+                  {...this.props}
+                  value={this.props.value}
+                  onChange={this.props.onChange}
+                  >
         </textarea>
         <style jsx>{ formStyles }</style>
       </div>
@@ -97,7 +148,7 @@ class Textarea extends Component {
 class Form extends Component {
   render() {
     return (
-      <form action={this.props.action} method={this.props.method} className={this.props.class}>
+      <form className={this.props.class} onSubmit={ this.props.onSubmit }>
         {this.props.children}
         <style jsx>{`
           form {
@@ -111,18 +162,85 @@ class Form extends Component {
 }
 
 class Contact extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      name: '',
+      email: '',
+      subject: '',
+      tel: '',
+      info: ''
+    }
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.changeInput = this.changeInput.bind(this)
+    this.onFormSubmit = this.onFormSubmit.bind(this)
+  }
+
+  handleSubmit (e) {
+    e.preventDefault()
+    console.log("handleSubmit")
+    let userName = this.state.name.trim()
+    let userEmail = this.state.email.trim()
+    let userSubject = this.state.subject.trim()
+    let userTel = this.state.tel.trim()
+    let userMessage = this.state.message
+
+    if(!userName || !userEmail || !userSubject || !userMessage) return
+
+    this.setState({
+      name: '',
+      email: '',
+      subject: '',
+      tel: '',
+      info: 'Please wait...'
+    })
+
+    this.onFormSubmit({
+      name: userName,
+      email: userEmail,
+      subject: userSubject,
+      tel: userTel,
+      message: userMessage
+    }, function(data) {
+      console.log("onFormSubmit callback")
+      console.log(data)
+      // this.setState({ info: data })
+    }.bind(this))
+  }
+
+  changeInput (e) {
+    const name = e.target.name
+    this.setState({
+      [name]: e.target.value
+    })
+  }
+
+  onFormSubmit (data, callback) {
+    console.log("onFormSubmit")
+    axios.post(postRoute, {...data})
+    .then(function(res) {
+      callback(data)
+      this.setState({ info: true })
+      console.log(res)
+    }.bind(this))
+    .catch(function (err) {
+      this.setState({ info: false })
+      console.error(err)
+    }.bind(this))
+  }
+
   render () {
-    const postRoute = `${variables.PUBLICAPI}contact`
     return (
       <Layout url={this.props.url}>
         <main>
           <div className="container">
-            <Form action={postRoute} method="post" class="contact-form">
-              <Input name="name" placeholder="Full Name" type="text" required />
-              <Input name="email" placeholder="Email Address" type="email" required />
-              <Input name="subject" placeholder="Subject" type="text" required />
-              <Input name="tel" placeholder="Phone Number" type="tel" />
-              <Textarea name="message" placeholder="Your message" cols={30} rows={5} required />
+            <Info info={ this.state.info } />
+            <Form class="contact-form" onSubmit={ this.handleSubmit }>
+              <Input name="name" placeholder="Full Name" type="text" required value={ this.state.name } onChange={ this.changeInput }/>
+              <Input name="email" placeholder="Email Address" type="email" required value={ this.state.email } onChange={ this.changeInput }/>
+              <Input name="subject" placeholder="Subject" type="text" required value={ this.state.subject } onChange={ this.changeInput }/>
+              <Input name="tel" placeholder="Phone Number" type="tel" value={ this.state.tel } onChange={ this.changeInput }/>
+              <Textarea name="message" placeholder="Your message" cols={30} rows={5} value={ this.state.message } onChange={ this.changeInput } required />
               <Input type="submit" />
             </Form>
           </div>

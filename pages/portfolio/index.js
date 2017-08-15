@@ -74,7 +74,8 @@ const Modal = (props) => (
       @media only screen and (min-width: 800px) {
         img {
         width: 70%;
-        min-width: 800px
+        min-width: 800px;
+        max-width: 1200px
         }
       }
     `}</style>
