@@ -23,6 +23,7 @@
     "mongoose": "^4.11.4",
     "next": "^2.4.9",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "react-transition-group": "^2.2.0"
   }
 }

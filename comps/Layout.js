@@ -1,16 +1,19 @@
 import Header from './Header'
 import Head from 'next/head'
-import { Component } from 'react'
+import react from 'react'
+import TransitionGroup from 'react-transition-group/TransitionGroup';
+import Transition from 'react-transition-group/Transition'
+import pageTransition from '../styles/transitionStyles'
 
 const layoutStyle = {
   fontFamily: 'sans-serif'
 }
 
-class Layout extends Component {
+class Layout extends react.Component {
   constructor(props) {
     super(props)
     this.state = {
-      title: "QuCode | Webdevelopment",
+      title: "QuCode | Webdevelopment"
     }
   }
   render () {

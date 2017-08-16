@@ -60,22 +60,22 @@ class Header extends Component {
           <div className="links hidden">
             <ul>
               <li>
-                <Link href="/">
+                <Link prefetch href="/">
                   <a className={isActive(path, "/")}>Home</a>
                 </Link>
               </li>
               <li>
-                <Link href="/about">
+                <Link prefetch href="/about">
                   <a className={isActive(path, "/about")}>About</a>
                 </Link>
               </li>
               <li>
-                <Link href="/portfolio">
+                <Link prefetch href="/portfolio">
                   <a className={isActive(path, "/portfolio")}>Portfolio</a>
                 </Link>
               </li>
               <li>
-                <Link href="/contact">
+                <Link prefetch href="/contact">
                   <a className={isActive(path, "/contact")}>Contact</a>
                 </Link>
               </li>
