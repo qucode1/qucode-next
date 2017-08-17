@@ -15,7 +15,7 @@ class Icon extends Component {
   }
   render() {
     return (
-      <Transition in={this.props.in} timeout={duration} children={this.props.children} appear={true} addEndListener={(node, done) => {
+      <Transition in={this.props.in} timeout={0} children={this.props.children} appear={true} addEndListener={(node, done) => {
         node.addEventListener('transitionend', this.done, done, false);
       }}>
         {(state) => (

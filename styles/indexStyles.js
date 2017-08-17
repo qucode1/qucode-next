@@ -35,7 +35,6 @@ export const indexBasics = `
     height: var(--size);
   }
   .profileImg {
-    background-color: rgba(37, 148, 254, 0.74);
     width: var(--y, 250px);
     height: var(--y);
     overflow: hidden;
