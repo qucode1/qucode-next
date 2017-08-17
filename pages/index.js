@@ -41,11 +41,6 @@ class Index extends Component {
       profile: true
     })
   }
-  componentWillUnmount() {
-    this.setState({
-      profile: false
-    })
-  }
   handleIconState () {
     this.setState({
       icons: true

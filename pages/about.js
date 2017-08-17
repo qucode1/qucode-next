@@ -4,91 +4,12 @@ import fetch from 'isomorphic-unfetch'
 const variables = require('../variables.json')
 // import { aboutStyles } from '../styles/aboutStyles'
 import { container } from '../styles/baseStyles'
+import Transition from 'react-transition-group/Transition'
+import { aboutRowTransition, containerTransitionStyles } from '../styles/transitionStyles'
 
-const Skill = (props) => (
-  <div className="skill" key={props._id}>
-    <div style={{display: "flex", alignItems: "center", justifyContent: "flex-start"}}>
-      <img src={props.image} style={{height: "40px"}}/>
-      <p>{props.name}</p>
-    </div>
-    <div className="prog-cont">
-      <div className="prog-val" style={{width: props.progress, backgroundColor: props.color}}></div>
-    </div>
-    <style jsx>{`
-      .prog-cont {
-        width: 90%;
-        height: 8px;
-        border-radius: 8px;
-        background-color: lightgrey;
-        margin: 0 auto 5px auto;
-      }
-      .prog-val {
-        width: 50%;
-        height: 100%;
-        border-radius: 10px;
-        background-color: purple
-      }
-      .skill {
-        width: 45%
-      }
-    `}</style>
-  </div>
-)
-
-const Row = (props) => (
-  <div className="row">
-    {props.children}
-    <style jsx>{`
-      .row {
-        display: flex;
-        flex-direction: column;
-        background-color: #eaf8ff
-      }
-      .row:nth-child(even) {
-        background-color: #fff
-      }
-      @media only screen and (min-width: 600px) {
-        .row {
-          flex-direction: row
-        }
-      }
-    `}</style>
-  </div>
-)
-
-const Item = (props) => (
-  <div className={props.class}>
-    {props.children}
-    <style jsx>{`
-      .title, .content {
-        padding: 0 5px
-      }
-      .title {
-        flex: 1;
-        font-weight: bold
-      }
-      .content {
-        flex: 3;
-        display: flex;
-        flex-wrap: wrap
-      }
-      @media only screen and (min-width: 600px) {
-        .title {
-          padding: 5px;
-          border-right: 2px solid rgb(13, 100, 148);
-          color: white;
-          font-weight: normal
-          text-align: right;
-          letter-spacing: 1.5px;
-          background-image: linear-gradient(to bottom, rgb(54, 173, 239), rgb(32, 161, 232));
-        }
-        .content {
-          padding: 5px
-        }
-      }
-    `}</style>
-  </div>
-)
+import Skill from '../comps/about/Skill'
+import Row from '../comps/about/Row'
+import Item from '../comps/about/Item'
 
 class About extends Component {
   static async getInitialProps() {
@@ -99,57 +20,103 @@ class About extends Component {
 
     return { skills, texts }
   }
+  constructor(props) {
+    super(props)
+    this.state = ({
+      rows: {
+        name: false,
+        goal: false,
+        skills: false,
+        learning: false,
+        story: false
+      },
+      currentRow: 0,
+      container: false
+    })
+    this.handleRowStates = this.handleRowStates.bind(this)
+  }
+  keys() {
+    return Object.keys(this.state.rows)
+  }
+  handleRowStates() {
+    let row = this.keys()
+    let rows = this.state.rows
+    rows[row[this.state.currentRow]] = true
+    let currentRow = ++this.state.currentRow
+    this.setState({
+      rows,
+      currentRow
+    })
+    // console.log(this.state.rows)
+    // console.log(this.state.currentRow)
+    if(this.state.currentRow <= row.length - 1) {
+      // console.log("timeout")
+      setTimeout(this.handleRowStates, aboutRowTransition / 3)
+    }
+  }
+  componentDidMount() {
+    this.setState({ container: true })
+    this.handleRowStates()
+  }
   render () {
     // console.log(this.props.texts)
+    const calcDuration = aboutRowTransition + 4 * 1 / 3 * aboutRowTransition
+    const containerDefaultStyle = {
+      height: 0
+    }
     return (
       <Layout url={this.props.url}>
         <main>
-          <div className="container">
+          <Transition in={this.state.container} timeout={calcDuration} appear={true} >
+            {(state) => (
+              <div className="container" style={{...containerDefaultStyle, ...containerTransitionStyles[state], transition: `${calcDuration}ms ease-in`}}>
 
-            <Row>
-              <Item class="title">
-                <p>Name</p>
-              </Item>
-              <Item class="content">
-                <p>Yannick Panis</p>
-              </Item>
-            </Row>
-            <Row>
-              <Item class="title">
-                <p>Goal</p>
-              </Item>
-              <Item class="content">
-                <p>{this.props.texts.find(text => text.name === "goal").content}</p>
-              </Item>
-            </Row>
-            <Row>
-              <Item class="title">
-                <p>Skills</p>
-              </Item>
-              <Item class="content">
-              {this.props.skills.map((skill) => (
-                <Skill key={skill._id} {...skill}/>
-              ))}
-              </Item>
-            </Row>
-            <Row>
-              <Item class="title">
-                <p>Currently Learning</p>
-              </Item>
-              <Item class="content">
-                <p>{this.props.texts.find(text => text.name === "learning").content}</p>
-              </Item>
-            </Row>
-            <Row>
-              <Item class="title">
-                <p>My Story</p>
-              </Item>
-              <Item class="content">
-                <p>{this.props.texts.find(text => text.name === "story-en").content}</p>
-                <p>{this.props.texts.find(text => text.name === "story-de").content}</p>
-              </Item>
-            </Row>
-          </div>
+                <Row key='name' in={this.state.rows.name} timeout={aboutRowTransition}>
+                  <Item class="title">
+                    <p>Name</p>
+                  </Item>
+                  <Item class="content">
+                    <p>Yannick Panis</p>
+                  </Item>
+                </Row>
+                <Row key='goal' in={this.state.rows.goal} timeout={aboutRowTransition}>
+                  <Item class="title">
+                    <p>Goal</p>
+                  </Item>
+                  <Item class="content">
+                    <p>{this.props.texts.find(text => text.name === "goal").content}</p>
+                  </Item>
+                </Row>
+                <Row key='skills' in={this.state.rows.skills} timeout={aboutRowTransition}>
+                  <Item class="title">
+                    <p>Skills</p>
+                  </Item>
+                  <Item class="content">
+                  {this.props.skills.map((skill) => (
+                    <Skill key={skill._id} {...skill}/>
+                  ))}
+                  </Item>
+                </Row>
+                <Row key='learning' in={this.state.rows.learning} timeout={aboutRowTransition}>
+                  <Item class="title">
+                    <p>Currently Learning</p>
+                  </Item>
+                  <Item class="content">
+                    <p>{this.props.texts.find(text => text.name === "learning").content}</p>
+                  </Item>
+                </Row>
+                <Row key='story' in={this.state.rows.story} timeout={aboutRowTransition}>
+                  <Item class="title">
+                    <p>My Story</p>
+                  </Item>
+                  <Item class="content">
+                    <p>{this.props.texts.find(text => text.name === "story-en").content}</p>
+                    <p>{this.props.texts.find(text => text.name === "story-de").content}</p>
+                  </Item>
+                </Row>
+              </div>
+            )}
+          </Transition>
         </main>
         <style jsx>{ container }</style>
       </Layout>

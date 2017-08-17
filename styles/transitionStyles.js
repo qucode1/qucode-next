@@ -1,5 +1,5 @@
 export const duration = 300
-
+export const aboutRowTransition = 500
 export const pageTransition = 1000
 
 export const profileTransitionStyles = {
@@ -36,5 +36,25 @@ export const indexTransitionStyles = {
   },
   exited: {
     transform: 'translate(-100%)'
+  }
+}
+
+export const rowTransitionStyles = {
+  entering: {
+    transform: 'translateX(-100%) scale(0.3)',
+    opacity: 0
+  },
+  entered: {
+    transform: 'translateX(0) scale(1)',
+    opacity: 1
+  }
+}
+
+export const containerTransitionStyles = {
+  entering: {
+    height: 0
+  },
+  entered: {
+    height: 'auto'
   }
 }
