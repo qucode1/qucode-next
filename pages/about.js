@@ -39,6 +39,7 @@ class About extends Component {
     return Object.keys(this.state.rows)
   }
   handleRowStates() {
+
     let row = this.keys()
     let rows = this.state.rows
     rows[row[this.state.currentRow]] = true

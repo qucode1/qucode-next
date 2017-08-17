@@ -47,6 +47,7 @@ export const indexBasics = `
     transform: rotateZ(-45deg);
     height: 145%;
     width: 145%;
+    user-select: none
   }
   .fa {
     transform: rotate(-45deg);

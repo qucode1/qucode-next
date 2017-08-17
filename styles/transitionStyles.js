@@ -1,6 +1,8 @@
 export const duration = 300
 export const aboutRowTransition = 500
 export const pageTransition = 1000
+export const galleryTransition = 300
+export const contactFormTransition = 300
 
 export const profileTransitionStyles = {
   entering: {
@@ -56,5 +58,27 @@ export const containerTransitionStyles = {
   },
   entered: {
     height: 'auto'
+  }
+}
+
+export const galleryTransitionStyles = {
+  entering: {
+    transform: 'scale(0.3)',
+    opacity: 0
+  },
+  entered: {
+    transform: 'scale(1)',
+    opacity: 1
+  }
+}
+
+export const contactFormTransitionStyles = {
+  entering: {
+    transform: 'scale(0.3)',
+    opacity: 0
+  },
+  entered: {
+    transform: 'scale(1)',
+    opacity: 1
   }
 }

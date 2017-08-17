@@ -101,6 +101,7 @@ export const headerStyles = `
         stroke-width: 2;
         cursor: pointer;
         transition: transform 0.2s ease;
+        user-select: none
       }
       .toggle-menu-button:hover, .toggle-menu-button:focus {
         transform: rotateZ(90deg);

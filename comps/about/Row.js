@@ -3,7 +3,7 @@ import Transition from 'react-transition-group/Transition'
 import { aboutRowTransition, rowTransitionStyles } from '../../styles/transitionStyles'
 
 const Row = (props) => (
-  <Transition in={props.in} timeout={aboutRowTransition} children={props.children} appear={true} >
+  <Transition in={props.in} timeout={0} children={props.children} appear={true} >
     {(state) => (
       <div className="row" style={{...rowTransitionStyles[state], transition: `${aboutRowTransition}ms ease-in`}}>
         {props.children}
