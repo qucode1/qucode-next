@@ -13,7 +13,7 @@ class Input extends Component {
     this.handleFocus = this.handleFocus.bind(this)
   }
   handleFocus (e) {
-    // console.log(this.Label);
+    // console.log("handleFocus");
     e.nativeEvent.type === "focus"
     ? this.setState({ isActive: true })
     : this.setState({ isActive: false })
@@ -31,13 +31,13 @@ class Input extends Component {
                htmlFor={this.props.name}>
           {this.props.placeholder}
         </label>
-        <input onFocus={this.handleFocus}
-               onBlur={this.handleFocus}
-               id={this.props.name}
-               className={this.props.type === "submit" && "button"}
-               {...this.props}
-               value={this.props.value}
-               onChange={this.props.onChange}
+        <input  onFocus={this.handleFocus}
+                id={this.props.name}
+                className={this.props.type === "submit" && "button" || "noShadow"}
+                {...this.props}
+                value={this.props.type === "submit" && "Send Message" || this.props.value}
+                onChange={this.props.onChange}
+                onBlur={this.props.type !== "submit" ? (e) => (this.handleFocus(e), this.props.onBlur(e)) : null}
         />
       <style jsx>{ formStyles }</style>
       <style jsx>{ button }</style>
@@ -45,6 +45,9 @@ class Input extends Component {
         .button {
           background-color: var(--yellow);
           color: var(--black)
+        }
+        .noShadow {
+          box-shadow: none
         }
       `}
       </style>

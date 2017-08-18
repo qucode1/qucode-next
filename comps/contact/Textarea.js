@@ -32,13 +32,20 @@ class Textarea extends Component {
         </label>
         <textarea id={this.props.name}
                   onFocus={this.handleFocus}
-                  onBlur={this.handleFocus}
+                  className="noShadow"
                   {...this.props}
                   value={this.props.value}
                   onChange={this.props.onChange}
+                  onBlur={ (e) => (this.handleFocus(e), this.props.onBlur(e))}
                   >
         </textarea>
         <style jsx>{ formStyles }</style>
+        <style jsx>{`
+          .noShadow {
+            box-shadow: none
+          }
+        `}
+        </style>
       </div>
     )
   }

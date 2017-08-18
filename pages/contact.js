@@ -30,10 +30,13 @@ class Contact extends Component {
       contactForm: false
     }
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleRequiredShadow = this.handleRequiredShadow.bind(this)
     this.changeInput = this.changeInput.bind(this)
     this.onFormSubmit = this.onFormSubmit.bind(this)
   }
-
+  handleRequiredShadow (e) {
+    e.target.classList.remove('noShadow')
+  }
   handleSubmit (e) {
     e.preventDefault()
     // console.log("handleSubmit")
@@ -50,6 +53,7 @@ class Contact extends Component {
       email: '',
       subject: '',
       tel: '',
+      message: '',
       info: 'Please wait...'
     })
 
@@ -103,11 +107,11 @@ class Contact extends Component {
               <div className="container"  style={{...contactFormDefaultStyle, ...contactFormTransitionStyles[state], transition: `${contactFormTransition}ms ease-in`}}>
                 <Info info={ this.state.info } />
                 <Form class="contact-form" onSubmit={ this.handleSubmit }>
-                  <Input name="name" placeholder="Full Name" type="text" required value={ this.state.name } onChange={ this.changeInput }/>
-                  <Input name="email" placeholder="Email Address" type="email" required value={ this.state.email } onChange={ this.changeInput }/>
-                  <Input name="subject" placeholder="Subject" type="text" required value={ this.state.subject } onChange={ this.changeInput }/>
-                  <Input name="tel" placeholder="Phone Number" type="tel" value={ this.state.tel } onChange={ this.changeInput }/>
-                  <Textarea name="message" placeholder="Your message" cols={30} rows={5} value={ this.state.message } onChange={ this.changeInput } required />
+                  <Input name="name" placeholder="Full Name" type="text" required value={ this.state.name } onChange={ this.changeInput } onBlur={ this.handleRequiredShadow }/>
+                  <Input name="email" placeholder="Email Address" type="email" required value={ this.state.email } onChange={ this.changeInput } onBlur={ this.handleRequiredShadow }/>
+                  <Input name="subject" placeholder="Subject" type="text" required value={ this.state.subject } onChange={ this.changeInput } onBlur={ this.handleRequiredShadow }/>
+                  <Input name="tel" placeholder="Phone Number (optional)" type="tel" value={ this.state.tel } onChange={ this.changeInput } onBlur={ this.handleRequiredShadow }/>
+                  <Textarea name="message" placeholder="Your message" cols={30} rows={5} value={ this.state.message } onChange={ this.changeInput } onBlur={ this.handleRequiredShadow }required />
                   <Input type="submit" />
                 </Form>
               </div>

@@ -8,9 +8,10 @@ const ProfileImg = (props) => (
     node.addEventListener('transitionend', props.handleIconState, done, false);
   }}>
     {(state) => (
-      <div style={{...profileTransitionStyles[state], transition: `${duration}ms ease-in`}}>
+      <div className='profileAnimationStyles' style={{...profileTransitionStyles[state], transition: `${duration}ms ease-in`}}>
         {props.children}
         <style jsx>{`
+          .profileAnimationStyles {
             transform: scale(0.3);
             opacity: 0;
           }
