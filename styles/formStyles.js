@@ -34,6 +34,7 @@ export const button = `
     border: none;
     background-color: rgb(31, 164, 237);
     padding: 10px;
-    color: #fff
+    color: #fff;
+    cursor: pointer
   }
 `

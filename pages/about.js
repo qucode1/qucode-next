@@ -13,22 +13,26 @@ import Item from '../comps/about/Item'
 
 class About extends Component {
   static async getInitialProps() {
-    let skills = await fetch(`${variables.PUBLICAPI}skills`)
-    let texts = await fetch(`${variables.PUBLICAPI}texts/c/about`)
-    texts = await texts.json()
-    skills = await skills.json()
+    let rows = await fetch(`${variables.PUBLICAPI}about/rows`)
+    rows = await rows.json()
 
-    return { skills, texts }
+    return { rows }
   }
   constructor(props) {
     super(props)
+    const rowObjects = {}
+    props.rows.map( row => {
+      let rowName = row.name
+      return rowObjects[rowName] = false
+    })
     this.state = ({
       rows: {
-        name: false,
-        goal: false,
-        skills: false,
-        learning: false,
-        story: false
+        ...rowObjects
+        // name: false,
+        // goal: false,
+        // skills: false,
+        // learning: false,
+        // story: false
       },
       currentRow: 0,
       container: false
@@ -61,7 +65,7 @@ class About extends Component {
   }
   render () {
     // console.log(this.props.texts)
-    const calcDuration = aboutRowTransition + 4 * 1 / 3 * aboutRowTransition
+    const calcDuration = aboutRowTransition + this.props.rows.length * 1 / 3 * aboutRowTransition
     const containerDefaultStyle = {
       height: 0
     }
@@ -71,50 +75,20 @@ class About extends Component {
           <Transition in={this.state.container} timeout={calcDuration} appear={true} >
             {(state) => (
               <div className="container" style={{...containerDefaultStyle, ...containerTransitionStyles[state], transition: `${calcDuration}ms ease-in`}}>
+                {this.props.rows.map( row => (
+                  <Row key={row.name} in={this.state.rows[row.name]} timeout={aboutRowTransition}>
+                    <Item class='title'>
+                      <p>{row.name}</p>
+                    </Item>
+                    <Item class='content'>
+                      <p>{row.text && row.text.content}</p>
+                      {row.skills.map((skill) => (
+                        <Skill key={skill._id} {...skill}/>
+                      ))}
+                    </Item>
+                  </Row>
+                ))}
 
-                <Row key='name' in={this.state.rows.name} timeout={aboutRowTransition}>
-                  <Item class="title">
-                    <p>Name</p>
-                  </Item>
-                  <Item class="content">
-                    <p>Yannick Panis</p>
-                  </Item>
-                </Row>
-                <Row key='goal' in={this.state.rows.goal} timeout={aboutRowTransition}>
-                  <Item class="title">
-                    <p>Goal</p>
-                  </Item>
-                  <Item class="content">
-                    <p>{this.props.texts.find(text => text.name === "goal").content}</p>
-                  </Item>
-                </Row>
-                <Row key='skills' in={this.state.rows.skills} timeout={aboutRowTransition}>
-                  <Item class="title">
-                    <p>Skills</p>
-                  </Item>
-                  <Item class="content">
-                  {this.props.skills.map((skill) => (
-                    <Skill key={skill._id} {...skill}/>
-                  ))}
-                  </Item>
-                </Row>
-                <Row key='learning' in={this.state.rows.learning} timeout={aboutRowTransition}>
-                  <Item class="title">
-                    <p>Currently Learning</p>
-                  </Item>
-                  <Item class="content">
-                    <p>{this.props.texts.find(text => text.name === "learning").content}</p>
-                  </Item>
-                </Row>
-                <Row key='story' in={this.state.rows.story} timeout={aboutRowTransition}>
-                  <Item class="title">
-                    <p>My Story</p>
-                  </Item>
-                  <Item class="content">
-                    <p>{this.props.texts.find(text => text.name === "story-en").content}</p>
-                    <p>{this.props.texts.find(text => text.name === "story-de").content}</p>
-                  </Item>
-                </Row>
               </div>
             )}
           </Transition>
