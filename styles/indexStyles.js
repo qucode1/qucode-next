@@ -40,7 +40,8 @@ export const indexBasics = `
     overflow: hidden;
     display: flex;
     justify-content: center;
-    align-items: center
+    align-items: center;
+    box-shadow: 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.24);
   }
   .profileImg > img {
     transform: rotateZ(-45deg);
@@ -48,7 +49,7 @@ export const indexBasics = `
     width: 145%;
     user-select: none
   }
-  .fa {
+  .socialLink .fa {
     transform: rotate(-45deg);
     font-size: 7vW
   }
@@ -60,7 +61,7 @@ export const indexBasics = `
     text-decoration: none
   }
   @media only screen and (min-width: 690px) {
-    .fa {
+    .socialLink .fa {
       font-size: 3em
     }
   }

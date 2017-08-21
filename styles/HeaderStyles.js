@@ -32,8 +32,8 @@ export const headerStyles = `
         justify-content: space-around;
         box-shadow: 0 0 2px rgba(0, 0, 0, .12), 0 2px 4px rgba(0, 0, 0, .24);
         background-color: rgb(31, 164, 237);
-        min-height: 70px;
-        height: auto;
+        min-height: 0px;
+        height: 40px;
         width: 100%;
         position: fixed;
         top: 0;
@@ -41,6 +41,9 @@ export const headerStyles = `
         z-index: 50;
         overflow: hidden
       }
+       .navLinkLabel {
+         display: none
+       }
       .topNav {
         display: flex;
         justify-content: space-between;
@@ -49,31 +52,47 @@ export const headerStyles = `
         color: #fff;
         padding: 0 10px 0;
       }
+      .topNav img {
+        height: 40px
+      }
       .links ul li {
         list-style: none;
         display: block;
-        margin: 0 0 10px;
+        width: 100%;
+
         text-align: center;
       }
       .links ul {
         padding: 0;
         margin: 0;
+        display: flex;
+        justify-content: space-around;
+        width: 100%
       }
       .links ul li a {
         color: rgba(255, 255, 255, .6);
         cursor: pointer;
         text-decoration: none;
+        display: block;
+        padding: 7px 0;
       }
-      .links ul li a.active {
+      .links ul li a.active, .links ul li a:hover, .links ul li a:focus {
         color: #fff
       }
+      .logo {
+        display: flex;
+        justify-content: center;
+        width: 100%
+      }
       .logo p {
-        margin: 0;
+        margin: 0 5px;
       }
       .links {
-        display: block;
-        height: 180px;
-        padding: 10px 0;
+        position: fixed;
+        bottom: 0;
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
         transition: height .3s;
         overflow: hidden;
         visibility: visible;
@@ -89,11 +108,6 @@ export const headerStyles = `
       }
       #collapseNavBtn p, #collapseNavBtn p i {
         cursor: pointer;
-      }
-      .links.hidden {
-        visibility: hidden;
-        height: 0;
-        padding: 0;
       }
       .toggle-menu-button {
         fill: none;
@@ -113,6 +127,9 @@ export const headerStyles = `
           justify-content: space-between;
           align-items: center
         }
+        .navLinkLabel {
+          display: inline-block
+        }
         .logo, .links, .links ul li {
           display: inline-block;
           margin: 0;
@@ -120,12 +137,16 @@ export const headerStyles = `
         }
         .links ul li {
           display: flex;
-          align-items: flex-end
+          align-items: flex-end;
+          margin: 0 0 10px;
+          width: auto
         }
         #collapseNavBtn {
           display: none
         }
         .links {
+          position: relative;
+          display: block;
           height: auto;
           align-self: center;
           overflow: visible;
@@ -136,6 +157,7 @@ export const headerStyles = `
         .links ul li a {
           border-bottom: 3px solid transparent;
           padding: 0 0 16px 0;
+          white-space: nowrap
         }
         .links ul li a.active {
           border-bottom: 3px solid #fff;
@@ -154,11 +176,8 @@ export const headerStyles = `
         .topNav {
           width: auto
         }
-        .links.hidden {
-          display: flex;
-          align-items: center;
-          visibility: visible;
-          height: 70px;
+        .topNav img {
+          height: 100%
         }
         .placeholder {
           width: 251.34px;

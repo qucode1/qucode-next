@@ -15,7 +15,7 @@ export const basics = `
     width: 100%
   }
   main {
-    padding-top: 70px
+    padding-top: 40px
   }
   a {
     text-decoration: none;
@@ -23,6 +23,11 @@ export const basics = `
   }
   a:hover, a:focus {
     text-decoration: underline
+  }
+  @media only screen and (min-width: 900px) {
+    main {
+      padding-top: 70px
+    }
   }
 `
 export const colors = `

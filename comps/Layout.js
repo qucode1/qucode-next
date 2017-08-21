@@ -28,7 +28,7 @@ class Layout extends react.Component {
           <meta name="twitter:title" content="QuCode | Javascript Developer" />
           <meta name="twitter:site" content="@qucode" />
           <meta name="twitter:description" content="I am am a web developer, focusing on javascript with Node.js, react & mongodb." />
-          <meta name="twitter:image" content="/static/gallery.png" />
+          <meta name="twitter:image" content="/static/gallery.jpg" />
           <meta name="twitter:image:alt" content="QuCode Landing Page" />
           <meta name="twitter:creator" content="@qucode" />
           <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' />

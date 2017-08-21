@@ -45,7 +45,7 @@ class Portfolio extends Component {
     return (
       <Layout url={this.props.url}>
         <main>
-          <Transition in={this.state.gallery} timeout={0} appear={true} >
+          <Transition key='gallery' in={this.state.gallery} timeout={0} appear={true} >
             {(state) => (
               <div>
                 <div className="gallery" style={{...galleryDefaultStyle, ...galleryTransitionStyles[state], transition: `${galleryTransition}ms ease-in`}}>
@@ -53,7 +53,7 @@ class Portfolio extends Component {
                     (<Card key={project._id} project={project} onClick={this.handleModal} />)
                   )}
                 </div>
-                {this.state.modalOn && <Modal {...this.state.modalData} onClick={this.handleModal}/>}
+                {this.state.modalOn && <Modal {...this.state.modalData} key={this.state.modalData.name} in={this.state.modalOn} onClick={this.handleModal}/>}
               </div>
             )}
           </Transition>
