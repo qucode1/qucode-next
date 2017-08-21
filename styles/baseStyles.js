@@ -15,7 +15,8 @@ export const basics = `
     width: 100%
   }
   main {
-    padding-top: 40px
+    padding-top: 40px;
+    padding-bottom: 40px
   }
   a {
     text-decoration: none;

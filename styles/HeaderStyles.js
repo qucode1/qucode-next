@@ -33,7 +33,7 @@ export const headerStyles = `
         box-shadow: 0 0 2px rgba(0, 0, 0, .12), 0 2px 4px rgba(0, 0, 0, .24);
         background-color: rgb(31, 164, 237);
         min-height: 0px;
-        height: 40px;
+        height: auto;
         width: 100%;
         position: fixed;
         top: 0;
@@ -82,6 +82,7 @@ export const headerStyles = `
       .logo {
         display: flex;
         justify-content: center;
+        flex-wrap: wrap;
         width: 100%
       }
       .logo p {
