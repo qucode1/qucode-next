@@ -13,7 +13,7 @@ import Item from '../comps/about/Item'
 
 class About extends Component {
   static async getInitialProps() {
-    let rows = await fetch(`${variables.PUBLICAPI}about/rows`)
+    let rows = await fetch(`${variables.PUBLICAPI}about/rows/active`)
     rows = await rows.json()
 
     return { rows }
